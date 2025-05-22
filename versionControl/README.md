@@ -9,6 +9,7 @@ A few of git commands done in this projects.
 - Viewed commit history: `git log`
 - Merged a branch: `git merge <branch-name>`
 - Viewed commit history: `git log`
+- To list all branchs: `git banch`
 
 
 
