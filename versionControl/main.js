@@ -7,19 +7,29 @@ const internsData = [
   { name: "joy", stage: "Intermediate", pathway: "Backend development" },
   { name: "khadijat", stage: "Beginner", pathway: "Frontend development" },
 ];
+// feature branch
+console.log("feature branch is working")
 console.log("Interns:", internsData);
+// iterate and return the interns names
 const internNames = internsData.map((intern) => intern.name);
 console.log("Names:", internNames);
+
+//maps over internData array
 const internPrograms = internsData.map((intern) => intern.pathway);
 console.log("Programs:", internPrograms);
+
+// filters and logs interns under frontend pathway
 const frontendInterns = internsData.filter(
   (intern) => intern.pathway === "Frontend development"
 );
 console.log("Frontend Interns:", frontendInterns);
+//filters and logs interns under Backend pathway
 const BackendInterns = internsData.filter(
   (intern) => intern.pathway === "Backend development"
 );
 console.log("Backend Interns:", BackendInterns);
+
+// filters and logs interns under Gen Ai pathway
 const GenAiInterns = internsData.filter((intern) => intern.pathway === "Gen Ai");
 console.log("Gen Ai Interns:", GenAiInterns);
 const advancedInterns = internsData.filter(
