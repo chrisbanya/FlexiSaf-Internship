@@ -25,8 +25,10 @@ export const useApi = () => {
     setLoading(true);
     clearError();
     try {
-      const newItem = await apiService.createItem(itemData);
-      setItems((prev) => [{ ...newItem, id: Date.now() }, ...prev]);
+      const dynamicId = Date.now();
+      const newItem = { ...itemData, id: dynamicId};
+      // const newItem = await apiService.createItem(itemData);
+      setItems((prev) => [newItem, ...prev]);
       return newItem;
     } catch (err) {
       setError(err.message);
@@ -40,7 +42,14 @@ export const useApi = () => {
     setLoading(true);
     clearError();
     try {
-      await apiService.updateItem(id, itemData);
+      const isOriginalPost = typeof id === "number" && id <= 100;
+      if (isOriginalPost) {
+        try {
+          await apiService.updateItem(id, itemData);
+        } catch (apiError) {
+          console.warn(`Api update faied for post ${id}:`, apiError);
+        }
+      }
       setItems((prev) =>
         prev.map((item) => (item.id === id ? { ...item, ...itemData } : item))
       );
@@ -66,7 +75,6 @@ export const useApi = () => {
     }
   };
 
-  
   useEffect(() => {
     fetchItems();
   }, []);
